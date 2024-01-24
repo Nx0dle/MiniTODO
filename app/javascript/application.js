@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "jquery"
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -37,7 +38,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (!e.checked) {
                 e.parentElement.classList.remove('done')
-                e.classList.remove('final-state');
             }
 
         })
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     grid.addEventListener('click', () => {
         iterView++
-        if (iterView % 2 == 0) {
+        if (iterView % 2 === 0) {
             let mid_panel_grid = document.querySelector('#middle-panel .lists')
             mid_panel_grid.style.display = 'grid'
             mid_panel_grid.style.gridTemplate = '1fr 1fr 1fr / 1fr 1fr 1fr'

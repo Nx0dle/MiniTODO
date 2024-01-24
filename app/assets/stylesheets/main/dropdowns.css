@@ -1,5 +1,5 @@
 @keyframes line_slide {
-    0%   { width: 0%; }
+    0%   { width: 0; }
     100% { width: calc(100% - 1rem); }
 }
 
@@ -83,6 +83,11 @@ details .cont {
     position: relative;
 }
 
+.done {
+    animation: fade_out_text ease 1s;
+    animation-fill-mode:forwards;
+}
+
 .done::after {
     content: "";
     height: 1px;
@@ -90,10 +95,5 @@ details .cont {
     position: absolute;
     left: 1rem;
     animation: line_slide ease 1s;
-    animation-fill-mode:forwards;
-}
-
-.done {
-    animation: fade_out_text ease 1s;
     animation-fill-mode:forwards;
 }
