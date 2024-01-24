@@ -97,3 +97,16 @@ details .cont {
     animation: line_slide ease 1s;
     animation-fill-mode:forwards;
 }
+
+.const-done {
+    opacity: 40%;
+}
+
+.const-done:after {
+    content: "";
+    height: 1px;
+    background-color: grey;
+    position: absolute;
+    left: 1rem;
+    width: calc(100% - 1rem);
+}

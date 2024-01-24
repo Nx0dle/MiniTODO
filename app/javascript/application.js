@@ -38,9 +38,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (!e.checked) {
                 e.parentElement.classList.remove('done')
+                e.parentElement.classList.remove('const-done')
             }
 
         })
+        if (e.checked) {
+            e.parentElement.classList.add('const-done')
+        }
+
+        if (!e.checked) {
+            e.parentElement.classList.remove('done')
+            e.parentElement.classList.remove('const-done')
+        }
     })
 
     let grid = document.querySelector('span.grid')
