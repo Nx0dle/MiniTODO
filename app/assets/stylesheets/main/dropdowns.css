@@ -1,0 +1,99 @@
+@keyframes line_slide {
+    0%   { width: 0%; }
+    100% { width: calc(100% - 1rem); }
+}
+
+@keyframes fade_out_text {
+    0% { opacity: 100%; }
+    100% { opacity: 40%; }
+}
+
+summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: .2rem 0;
+    font-size: .75rem;
+    font-weight: 400;
+    color: #30353b;
+}
+
+summary::after {
+    content: '';
+    width: 15px;
+    height: 8px;
+    background: url('https://uploads.sitepoint.com/wp-content/uploads/2023/10/1697699669arrow.svg') no-repeat;
+    background-size: cover;
+    margin-left: .75em;
+    transition: 0.2s;
+}
+
+details[open] > summary {
+    margin-bottom: .3rem;
+    padding-bottom: .3rem;
+    border-bottom: #30353b solid 1px;
+}
+
+details[open] > summary::after {
+    transform: rotate(180deg);
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    cursor: pointer;
+}
+
+details a {
+    text-decoration: none;
+    color: grey;
+    padding-left: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: .75rem;
+}
+
+details p {
+    text-decoration: none;
+    color: grey;
+    font-size: .75rem;
+    margin-bottom: 0;
+}
+
+details .items {
+    width: auto;
+}
+
+details .item {
+    display: inline-block;
+    width: auto;
+}
+
+details .cont {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    width: auto;
+
+    align-items: center;
+    position: relative;
+}
+
+.done::after {
+    content: "";
+    height: 1px;
+    background-color: grey;
+    position: absolute;
+    left: 1rem;
+    animation: line_slide ease 1s;
+    animation-fill-mode:forwards;
+}
+
+.done {
+    animation: fade_out_text ease 1s;
+    animation-fill-mode:forwards;
+}
