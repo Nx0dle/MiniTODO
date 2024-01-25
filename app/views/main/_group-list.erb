@@ -1,0 +1,8 @@
+<% @groups.each do |group| %>
+  <details>
+    <summary><%= group.name %></summary>
+    <% group.lists.each do |list| %>
+      <%= link_to list.name, '#' %>
+    <% end %>
+  </details>
+<% end %>

@@ -1,9 +1,0 @@
-<div class="items">
-  <% @tasks.each do |task| %>
-    <div class="item">
-      <div class="cont <%= 'const-done' if task.done %>">
-        <input type="checkbox" <%= 'checked' if task.done %>><p><%= task.title %></p>
-      </div>
-    </div><br>
-  <% end %>
-</div>
