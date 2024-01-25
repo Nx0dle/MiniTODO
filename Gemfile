@@ -67,3 +67,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "hirb", "~> 0.7.3"
