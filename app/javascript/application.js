@@ -9,18 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
     let m_panel = document.querySelector('#middle-panel')
     let r_panel = document.querySelector('#right-panel')
 
-    let welcome = document.querySelector('#welcome')
-    let run_btn = document.querySelector('.run-btn')
-
-    run_btn.addEventListener('click', () => {
-        l_panel.style.display = 'flex'
-        m_panel.style.display = 'flex'
-        r_panel.style.display = 'flex'
-        document.body.style.padding = '.3rem'
-        welcome.style.display = 'none'
-    })
-
-
     let collapse = document.querySelector('span.collapse')
 
     collapse.addEventListener('click', () => {

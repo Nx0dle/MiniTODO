@@ -12,12 +12,12 @@
     box-sizing: border-box;
 }
 
-body {
+#main {
     display: grid;
     grid-template: 1fr / 1fr 2fr 2fr;
     column-gap: 0.3rem;
 
-    padding: 0; /* .3 rem */
+    padding: .3rem;
     height: 100vh;
 
     background-color: black;
@@ -44,7 +44,7 @@ body {
 #right-panel {
     background-color: white;
 
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 0.5rem;
 
