@@ -84,17 +84,21 @@ $(document).on('turbo:load', function(){
     task_options.forEach((e, index) => {
         let iter = 0
         e.addEventListener('click', () => {
-            ++iter
-            if (iter % 2 !== 0) {
-                e.style.backgroundColor = 'lightgrey'
-                task_options_open[index].style.display = 'flex'
-                e.classList.remove('hover')
-            }
-            else {
-                e.style.backgroundColor = 'transparent'
-                task_options_open[index].style.display = 'none'
-                e.classList.add('hover')
-            }
+            e.style.backgroundColor = 'lightgrey'
+            task_options_open[index].style.display = 'flex'
+            e.classList.remove('hover')
+        })
+
+        task_options_open[index].addEventListener('mouseover', () => {
+            e.style.backgroundColor = 'lightgrey'
+            task_options_open[index].style.display = 'flex'
+            e.classList.remove('hover')
+        })
+
+        task[index].addEventListener('mouseout', () => {
+            e.style.backgroundColor = 'transparent'
+            task_options_open[index].style.display = 'none'
+            e.classList.add('hover')
         })
     })
 

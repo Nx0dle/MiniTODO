@@ -90,7 +90,7 @@ details .item {
 }
 
 details .item:hover {
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 2px 1px rgba(185, 185, 185, 0.5);
     transition: .2s ease;
 }
 
@@ -169,8 +169,9 @@ details .cont {
     gap: .3rem;
     top: .9rem;
     right: 0;
-    z-index: 999;
+    z-index: 999!important;
     animation: fade_in_text ease .2s;
+    border: rgba(0,0,0,0.2) solid 1px;
 }
 
 .action {
