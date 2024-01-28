@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
 
-$(document).ready(function(){
+$(document).on('turbo:load', function(){
 
     $('input[type=checkbox]').change(function() {
         $.ajax({
