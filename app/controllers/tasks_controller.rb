@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  before_action :set_task_id, only: [:edit, :update, :destroy]
   def new
     @task = Task.new
     @subcategories = Subcategory.all
@@ -13,6 +14,21 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to app_path
     end
+  end
+
+  def edit
+    @subcategories = Subcategory.all
+  end
+
+  def update
+    if @task.update(task_params)
+      redirect_to app_path
+    end
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to app_path
   end
 
   private

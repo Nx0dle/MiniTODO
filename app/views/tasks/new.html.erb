@@ -2,7 +2,7 @@
   <%= turbo_frame_tag "newTask#{sub.id}" do %>
     <%= form_with(model: @task, local: true, class: 'form-container') do |f| %>
       <%= f.hidden_field 'subcategory_id', value: sub.id %>
-      <%= f.text_field :name, placeholder: 'Write tasks name...'%>
+      <%= f.text_field :name, placeholder: 'New task...', autocomplete: "off", spellcheck: false %>
       <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>
     <% end %>
   <% end %>

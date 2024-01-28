@@ -24,11 +24,15 @@ $(document).on('turbo:load', function(){
 
     let add_sign = document.querySelectorAll('.add')
     let remove_sign = document.querySelectorAll('.remove')
+    let subcategory = document.querySelectorAll('.list details')
 
     add_sign.forEach((e, index) => {
         e.addEventListener('click', () => {
             e.style.display = 'none'
             remove_sign[index].style.display = 'block'
+            add_sign[index].classList.remove('const-hover')
+            remove_sign[index].classList.add('const-hover')
+            subcategory[index].open = true
         })
     })
 
@@ -36,6 +40,7 @@ $(document).on('turbo:load', function(){
         e.addEventListener('click', () => {
             e.style.display = 'none'
             add_sign[index].style.display = 'block'
+            remove_sign[index].classList.remove('const-hover')
         })
     })
 
@@ -62,5 +67,36 @@ $(document).on('turbo:load', function(){
             e.parentElement.classList.remove('const-done')
         }
     })
+
+    let task = document.querySelectorAll('.item')
+    let task_options = document.querySelectorAll('.options')
+    let task_options_open = document.querySelectorAll('.options-open')
+
+    task.forEach((e, index) => {
+        e.addEventListener('mouseover', () => {
+            task_options[index].style.display = 'flex'
+        })
+        e.addEventListener('mouseout', () => {
+            task_options[index].style.display = 'none'
+        })
+    })
+
+    task_options.forEach((e, index) => {
+        let iter = 0
+        e.addEventListener('click', () => {
+            ++iter
+            if (iter % 2 !== 0) {
+                e.style.backgroundColor = 'lightgrey'
+                task_options_open[index].style.display = 'flex'
+                e.classList.remove('hover')
+            }
+            else {
+                e.style.backgroundColor = 'transparent'
+                task_options_open[index].style.display = 'none'
+                e.classList.add('hover')
+            }
+        })
+    })
+
 
 })
