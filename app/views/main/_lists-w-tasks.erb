@@ -10,10 +10,10 @@
       </summary>
       <div class="items">
         <% sub.tasks.each do |task| %>
-          <div class="item">
+          <div class="item opt-tg">
             <div class="cont <%= 'const-done' if task.done %>">
               <%= check_box_tag 'done', task.id, task.done, id: "task_#{task.id}" %>
-              <p contenteditable><%= task.name %></p>
+              <p><%= task.name %></p>
             </div>
             <div class="options hover">
               <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>

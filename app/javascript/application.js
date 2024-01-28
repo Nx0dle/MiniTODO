@@ -67,7 +67,7 @@ $(document).on('turbo:load', function(){
         }
     })
 
-    let container = document.querySelectorAll('.item')
+    let container = document.querySelectorAll('.opt-tg')
     let task_options = document.querySelectorAll('.options')
     let task_options_open = document.querySelectorAll('.options-open')
 
