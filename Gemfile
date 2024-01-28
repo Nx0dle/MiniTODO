@@ -69,3 +69,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "hirb", "~> 0.7.3"
+
+gem 'jquery-rails'
