@@ -1,15 +1,23 @@
 <% @subcategories.each do |sub| %>
-  <details>
-    <summary><%= sub.name %></summary>
-    <div class="items">
-      <% sub.tasks.each do |task| %>
-        <div class="item">
-          <div class="cont <%= 'const-done' if task.done %>">
-            <%= check_box_tag 'done', task.id, task.done, id: "task_#{task.id}" %>
-            <p><%= task.name %></p>
-          </div>
-        </div><br>
-      <% end %>
+  <div class="list">
+    <details>
+      <summary><%= sub.name %></summary>
+      <div class="items">
+        <% sub.tasks.each do |task| %>
+          <div class="item">
+            <div class="cont <%= 'const-done' if task.done %>">
+              <%= check_box_tag 'done', task.id, task.done, id: "task_#{task.id}" %>
+              <p><%= task.name %></p>
+            </div>
+          </div><br>
+        <% end %>
+        <%= turbo_frame_tag "newTask#{sub.id}" do %>
+        <% end %>
+      </div>
+    </details>
+    <div class="action">
+      <%= link_to 'add', new_task_path, data: { turbo_frame: "newTask#{sub.id}" }, class: 'material-symbols-outlined add' %>
+      <%= link_to 'remove', '#', data: { turbo_frame: "newTask#{sub.id}" }, class: 'material-symbols-outlined remove' %>
     </div>
-  </details>
+  </div>
 <% end %>

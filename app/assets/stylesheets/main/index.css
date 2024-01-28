@@ -3,7 +3,13 @@
             'FILL' 0,
             'wght' 400,
             'GRAD' 0,
-            'opsz' 24
+            'opsz' 24;
+    text-decoration: none;
+    color: black;
+}
+
+.action .remove {
+    display: none;
 }
 
 * {
@@ -149,4 +155,10 @@
 .run-btn:active {
     box-shadow: none;
     transform: translateY(0);
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

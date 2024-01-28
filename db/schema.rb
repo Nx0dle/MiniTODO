@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_28_113452) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_28_135323) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -22,7 +24,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_113452) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["group_id"], name: "index_lists_on_group_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -30,7 +34,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_113452) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["list_id"], name: "index_subcategories_on_list_id"
+    t.index ["user_id"], name: "index_subcategories_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -57,8 +63,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_113452) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "groups", "users"
   add_foreign_key "lists", "groups"
+  add_foreign_key "lists", "users"
   add_foreign_key "subcategories", "lists"
+  add_foreign_key "subcategories", "users"
   add_foreign_key "tasks", "subcategories"
   add_foreign_key "tasks", "users"
 end

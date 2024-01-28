@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
+import {add} from "@hotwired/stimulus";
 
 $(document).on('turbo:load', function(){
 
@@ -18,6 +19,23 @@ $(document).on('turbo:load', function(){
                     alert("Validation failed: " + jqXHR.responseText);
                 }
             }
+        })
+    })
+
+    let add_sign = document.querySelectorAll('.add')
+    let remove_sign = document.querySelectorAll('.remove')
+
+    add_sign.forEach((e, index) => {
+        e.addEventListener('click', () => {
+            e.style.display = 'none'
+            remove_sign[index].style.display = 'block'
+        })
+    })
+
+    remove_sign.forEach((e, index) => {
+        e.addEventListener('click', () => {
+            e.style.display = 'none'
+            add_sign[index].style.display = 'block'
         })
     })
 
