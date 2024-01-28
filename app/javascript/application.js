@@ -2,7 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
-import {add} from "@hotwired/stimulus";
 
 $(document).on('turbo:load', function(){
 
@@ -32,7 +31,7 @@ $(document).on('turbo:load', function(){
             remove_sign[index].style.display = 'block'
             add_sign[index].classList.remove('const-hover')
             remove_sign[index].classList.add('const-hover')
-            subcategory[index].open = true
+            subcategory[index-1].open = true
         })
     })
 
@@ -68,11 +67,11 @@ $(document).on('turbo:load', function(){
         }
     })
 
-    let task = document.querySelectorAll('.item')
+    let container = document.querySelectorAll('.item')
     let task_options = document.querySelectorAll('.options')
     let task_options_open = document.querySelectorAll('.options-open')
 
-    task.forEach((e, index) => {
+    container.forEach((e, index) => {
         e.addEventListener('mouseover', () => {
             task_options[index].style.display = 'flex'
         })
@@ -95,7 +94,7 @@ $(document).on('turbo:load', function(){
             e.classList.remove('hover')
         })
 
-        task[index].addEventListener('mouseout', () => {
+        container[index].addEventListener('mouseout', () => {
             e.style.backgroundColor = 'transparent'
             task_options_open[index].style.display = 'none'
             e.classList.add('hover')

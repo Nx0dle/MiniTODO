@@ -1,8 +1,23 @@
 <% @groups.each do |group| %>
-  <details>
-    <summary><%= group.name %></summary>
-    <% group.lists.each do |list| %>
-      <%= link_to list.name, '#' %>
-    <% end %>
-  </details>
+  <%= turbo_frame_tag "editGroup#{group.id}" do %>
+  <% end %>
+  <div class="item">
+    <details>
+      <summary>
+        <%= group.name %>
+        <div class="action">
+          <div class="options hover">
+            <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
+            <div class="options-open">
+              <%= link_to 'edit', edit_group_path(group), data: { turbo_frame: "editGroup#{group.id}"}, class: 'material-symbols-outlined smaller-icon scale-up edit'%>
+              <%= link_to 'delete', group_path(group), data: { turbo_method: :delete }, class: 'material-symbols-outlined smaller-icon scale-up delete'%>
+            </div>
+          </div>
+        </div>
+      </summary>
+      <% group.lists.each do |list| %>
+        <%= link_to list.name, '#' %>
+      <% end %>
+    </details>
+  </div>
 <% end %>

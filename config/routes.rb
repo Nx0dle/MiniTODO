@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "main#welcome"
   get 'app', to: 'main#index'
   resources :tasks
+  resources :groups
   resources :main do
     post 'toggle', on: :member
   end

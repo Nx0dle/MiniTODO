@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "newGroup" do %>
+  <%= form_with(model: @group, local: true, class: 'form-container') do |f| %>
+    <%= f.text_field :name, placeholder: 'New group...', autocomplete: "off", spellcheck: false, autofocus: true %>
+    <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>
+  <% end %>
+<% end %>
