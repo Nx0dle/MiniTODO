@@ -6,6 +6,8 @@
       <summary>
         <%= group.name %>
         <div class="action">
+          <%= link_to 'add', new_list_path, data: { turbo_frame: "newList#{group.id}" }, class: 'material-symbols-outlined add hover' %>
+          <%= link_to 'remove', '#', data: { turbo_frame: "newList#{group.id}" }, class: 'material-symbols-outlined remove hover' %>
           <div class="options hover">
             <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
             <div class="options-open">
@@ -16,7 +18,20 @@
         </div>
       </summary>
       <% group.lists.each do |list| %>
-        <%= link_to list.name, '#' %>
+        <div class="item opt-tg">
+          <%= link_to list.name, '#' %>
+          <div class="options hover">
+            <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
+            <div class="options-open">
+              <%= link_to 'edit', edit_list_path(list), data: { turbo_frame: "editList#{list.id}"}, class: 'material-symbols-outlined smaller-icon scale-up edit'%>
+              <%= link_to 'delete', list_path(list), data: { turbo_method: :delete }, class: 'material-symbols-outlined smaller-icon scale-up delete'%>
+            </div>
+          </div>
+        </div>
+        <%= turbo_frame_tag "editList#{list.id}" do %>
+        <% end %>
+      <% end %>
+      <%= turbo_frame_tag "newList#{group.id}" do %>
       <% end %>
     </details>
   </div>

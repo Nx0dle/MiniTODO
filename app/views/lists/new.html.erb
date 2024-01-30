@@ -1,0 +1,9 @@
+<% @groups.each do |group| %>
+  <%= turbo_frame_tag "newList#{group.id}" do %>
+    <%= form_with(model: @list, local: true, class: 'form-container') do |f| %>
+      <%= f.hidden_field 'group_id', value: group.id %>
+      <%= f.text_field :name, placeholder: 'New list...', autocomplete: "off", spellcheck: false, autofocus: true %>
+      <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>
+    <% end %>
+  <% end %>
+<% end %>

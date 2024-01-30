@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'app', to: 'main#index'
   resources :tasks
   resources :groups
+  resources :lists
   resources :main do
     post 'toggle', on: :member
   end

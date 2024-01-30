@@ -23,7 +23,7 @@ $(document).on('turbo:load', function(){
 
     let add_sign = document.querySelectorAll('.add')
     let remove_sign = document.querySelectorAll('.remove')
-    let subcategory = document.querySelectorAll('.list details')
+    let dropdown = document.querySelectorAll('details')
 
     add_sign.forEach((e, index) => {
         e.addEventListener('click', () => {
@@ -31,7 +31,7 @@ $(document).on('turbo:load', function(){
             remove_sign[index].style.display = 'block'
             add_sign[index].classList.remove('const-hover')
             remove_sign[index].classList.add('const-hover')
-            subcategory[index-1].open = true
+            dropdown[index-1].open = true
         })
     })
 
