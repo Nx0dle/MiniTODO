@@ -24,6 +24,14 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @group.lists.each do |list|
+      subcategories = list.subcategories
+      subcategories.each do |sub|
+        sub.tasks.destroy_all
+      end
+      list.subcategories.destroy_all
+    end
+    @group.lists.destroy_all
     @group.destroy
     redirect_to app_path
   end

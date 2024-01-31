@@ -29,6 +29,10 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    @list.subcategories.each do |sub|
+      sub.tasks.destroy_all
+    end
+    @list.subcategories.destroy_all
     @list.destroy
     redirect_to app_path
   end
