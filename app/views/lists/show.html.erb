@@ -41,7 +41,7 @@
                   <div class="item opt-tg">
                     <div class="cont <%= 'const-done' if task.done %>">
                       <%= check_box_tag 'done', task.id, task.done, id: "task_#{task.id}" %>
-                      <p><%= task.name %></p>
+                      <%= link_to task.name, task_path(task), data: { turbo_frame: "right-panel"}, id: 'task_tg' %>
                     </div>
                     <div class="options hover">
                       <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>

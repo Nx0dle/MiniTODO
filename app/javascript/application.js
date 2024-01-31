@@ -85,12 +85,19 @@ function addRemoveAction() {
 
 function gridAction() {
     let middle_panel  = document.querySelector('#middle-panel')
+    let right_panel = document.querySelector('#right-panel')
     let grid_system = document.querySelector('#main')
     let list_tg = document.querySelectorAll('#list_tg')
+    let task_tg = document.querySelectorAll('#task_tg')
 
     $(list_tg).click(() => {
         middle_panel.style.display = 'flex'
         grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+    })
+
+    $(task_tg).click(() => {
+        right_panel.style.display = 'flex'
+        grid_system.style.gridTemplate = '1fr / 1fr 2fr 2fr'
     })
 }
 
@@ -106,6 +113,7 @@ $(document).on('turbo:load', function(){
 
         optionsAction()
         addRemoveAction()
+        gridAction()
 
         $('input[type=checkbox]').change(function() {
             $.ajax({

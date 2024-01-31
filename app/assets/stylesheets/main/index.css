@@ -418,6 +418,7 @@ details .cont {
     box-shadow: 0 0 4px 1px rgba(185, 185, 185, .2);
 }
 
-#list_tg:hover {
+#list_tg:hover,
+#task_tg:hover {
     text-decoration: underline;
 }

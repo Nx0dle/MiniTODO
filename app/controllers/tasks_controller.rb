@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task_id, only: [:edit, :update, :destroy]
+  before_action :set_task_id, only: [:edit, :update, :destroy, :show]
+
+  def show
+  end
   def new
     @task = Task.new
     @subcategories = Subcategory.all
