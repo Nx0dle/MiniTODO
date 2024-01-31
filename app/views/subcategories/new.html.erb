@@ -1,0 +1,9 @@
+<% @lists.each do |list| %>
+  <%= turbo_frame_tag "newSub#{list.id}" do %>
+    <%= form_with(model: @subcategory, local: true, class: 'form-container') do |f| %>
+      <%= f.hidden_field 'list_id', value: list.id %>
+      <%= f.text_field :name, placeholder: 'New subcategory...', autocomplete: "off", spellcheck: false, autofocus: true %>
+      <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>
+    <% end %>
+  <% end %>
+<% end %>

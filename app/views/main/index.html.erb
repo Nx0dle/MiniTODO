@@ -5,8 +5,8 @@
         <h3 class="hug collapse">Groups</h3>
       </div>
       <div class="action">
-        <%= link_to 'add', new_group_path, data: { turbo_frame: "newGroup" }, class: 'material-symbols-outlined add hover' %>
-        <%= link_to 'remove', '#', data: { turbo_frame: "newGroup" }, class: 'material-symbols-outlined remove hover' %>
+        <div class="add_outer"><%= link_to 'add', new_group_path, data: { turbo_frame: "newGroup" }, class: 'material-symbols-outlined hover bigger-icon' %></div>
+        <div class="remove_outer"><%= link_to 'remove', '#', data: { turbo_frame: "newGroup" }, class: 'material-symbols-outlined hover bigger-icon' %></div>
       </div>
     </div>
     <div class="content">
@@ -17,37 +17,8 @@
       <% end %>
     </div>
   </section>
-  <section id="middle-panel">
-    <div class="nav">
-      <div class="text">
-        <h3 class="hug">Tasks</h3>
-      </div>
-      <div class="action_nav">
-        <span class="material-symbols-outlined">
-          tune
-        </span>
-        <span class="material-symbols-outlined">
-          settings
-        </span>
-        <span class="material-symbols-outlined grid">
-          grid_view
-        </span>
-      </div>
-    </div>
-    <div class="content">
-      <div class="tags">
-        <div class="tag">
-          Work
-        </div>
-        <div class="tag">
-          List 1
-        </div>
-      </div>
-      <div class="lists">
-        <%= render 'lists-w-tasks' %>
-      </div>
-    </div>
-  </section>
+  <%= turbo_frame_tag 'middle-panel' do %>
+  <% end %>
   <section id="right-panel">
     <div class="nav">
       <div class="text">

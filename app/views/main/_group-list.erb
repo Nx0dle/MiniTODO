@@ -6,8 +6,8 @@
       <summary>
         <%= group.name %>
         <div class="action">
-          <%= link_to 'add', new_list_path, data: { turbo_frame: "newList#{group.id}" }, class: 'material-symbols-outlined add hover' %>
-          <%= link_to 'remove', '#', data: { turbo_frame: "newList#{group.id}" }, class: 'material-symbols-outlined remove hover' %>
+          <div class="add"><%= link_to 'add', new_list_path, data: { turbo_frame: "newList#{group.id}" }, class: 'material-symbols-outlined hover smaller-icon' %></div>
+          <div class="remove"><%= link_to 'remove', '#', data: { turbo_frame: "newList#{group.id}" }, class: 'material-symbols-outlined hover smaller-icon' %></div>
           <div class="options hover">
             <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
             <div class="options-open">
@@ -19,7 +19,7 @@
       </summary>
       <% group.lists.each do |list| %>
         <div class="item opt-tg">
-          <%= link_to list.name, '#' %>
+          <%= link_to list.name, list_path(list), data: { turbo_frame: "middle-panel"}, id: 'list_tg' %>
           <div class="options hover">
             <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
             <div class="options-open">

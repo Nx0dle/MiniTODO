@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ListsController < ApplicationController
-  before_action :set_group_id, only: [:edit, :update, :destroy]
+  before_action :set_list_id, only: [:edit, :update, :destroy, :show]
+
+  def show
+  end
+
   def new
     @list = List.new
     @groups = Group.all
@@ -31,7 +35,7 @@ class ListsController < ApplicationController
 
   private
 
-  def set_group_id
+  def set_list_id
     @list = List.find(params[:id])
   end
 

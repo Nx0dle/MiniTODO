@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :groups
   resources :lists
+  resources :subcategories
   resources :main do
     post 'toggle', on: :member
   end
