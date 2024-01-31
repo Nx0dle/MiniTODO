@@ -3,6 +3,28 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
 
+function mainAction() {
+    let user_action = document.querySelector('.user-action')
+    let user_action_open = document.querySelector('.user-action-open')
+
+        $(user_action).click(() => {
+            user_action.style.backgroundColor = 'lightgrey'
+            user_action_open.style.display = 'flex'
+            user_action.classList.remove('hover')
+        })
+
+        $(user_action_open).mouseover(() => {
+            user_action.style.backgroundColor = 'lightgrey'
+            user_action_open.style.display = 'flex'
+            user_action.classList.remove('hover')
+        })
+
+        $(user_action_open).mouseout(() => {
+            user_action.style.backgroundColor = 'transparent'
+            user_action_open.style.display = 'none'
+            user_action.classList.add('hover')
+        })
+}
 
 function optionsAction() {
     let container = document.querySelectorAll('.opt-tg')
@@ -19,7 +41,6 @@ function optionsAction() {
     })
 
     task_options.forEach((e, index) => {
-        let iter = 0
         e.addEventListener('click', () => {
             e.style.backgroundColor = 'lightgrey'
             task_options_open[index].style.display = 'flex'
@@ -89,25 +110,49 @@ function gridAction() {
     let grid_system = document.querySelector('#main')
     let list_tg = document.querySelectorAll('#list_tg')
     let task_tg = document.querySelectorAll('#task_tg')
+    let collapse_right_panel = document.querySelector('.collapse-r-p')
+    let collapse_middle_panel = document.querySelector('.collapse-m-p')
 
     $(list_tg).click(() => {
         middle_panel.style.display = 'flex'
-        grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+        if (right_panel.style.display == 'flex') {
+            grid_system.style.gridTemplate = '1fr / 1fr 2fr 2fr'
+        }
+        else {
+            grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+        }
     })
 
     $(task_tg).click(() => {
         right_panel.style.display = 'flex'
         grid_system.style.gridTemplate = '1fr / 1fr 2fr 2fr'
     })
+
+    $(collapse_right_panel).click(() => {
+        right_panel.style.display = 'none'
+        grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+    })
+
+    $(collapse_middle_panel).click(() => {
+        middle_panel.style.display = 'none'
+        if (right_panel.style.display == 'flex') {
+            grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+        }
+        else {
+            grid_system.style.gridTemplate = '1fr / 1fr'
+        }
+    })
 }
 
 $(document).on('turbo:load', function(){
 
     let middle_panel  = document.querySelector('#middle-panel')
+    let right_panel = document.querySelector('#right-panel')
 
     optionsAction()
     addRemoveAction()
     gridAction()
+    mainAction()
 
     $(middle_panel).on('turbo:frame-render', () => {
 
@@ -153,5 +198,9 @@ $(document).on('turbo:load', function(){
                 e.parentElement.classList.remove('const-done')
             }
         })
+    })
+
+    $(right_panel).on('turbo:frame-render', () => {
+        gridAction()
     })
 })

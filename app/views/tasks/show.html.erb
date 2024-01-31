@@ -1,10 +1,31 @@
 <%= turbo_frame_tag "right-panel" do %>
   <div class="nav">
     <div class="text">
+      <span class="material-symbols-outlined collapse-r-p">
+        close
+      </span>
       <h3 class="hug">Task details</h3>
+    </div>
+    <div class="action_nav">
+      <%= link_to "more_horiz", destroy_user_session_path, class: 'material-symbols-outlined', data: { turbo_method: :delete } %>
+    </div>
+  </div>
+  <div class="content">
+    <div class="title">
       <h4><%= @task.name %></h4>
     </div>
-    <div class="action">
+    <div class="desc">
+      <p><%= @task.description %></p>
+    </div>
+    <div class="tags">
+      <div class="tag">
+        <%= @task.subcategory.name %>
+      </div>
+      <div class="tag" style="background-color: <%= @task.done ? '#9EF597' : '#84D5F5' %>;">
+        <%= @task.done ? "Done" : "Ongoing" %>
+      </div>
+    </div>
+    <div class="user-info">
     </div>
   </div>
 <% end %>
