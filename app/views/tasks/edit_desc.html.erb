@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "editDesc#{@task.id}" do %>
+  <%= form_with(model: @task, local: true, class: 'form-container') do |f| %>
+    <%= f.text_field :description, placeholder: 'Edit description...', autocomplete: "off", spellcheck: false, autofocus: true %>
+    <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>
+  <% end %>
+<% end %>

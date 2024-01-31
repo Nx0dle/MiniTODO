@@ -343,7 +343,7 @@ details .cont {
 }
 
 .options,
-.user-action {
+.action-more {
     display: none;
     align-items: center;
     margin: 0;
@@ -355,12 +355,12 @@ details .cont {
     transition: 0.2s ease;
 }
 
-.user-action {
+.action-more {
     display: flex;
 }
 
 .options-open,
-.user-action-open {
+.action-more-open {
     background-color: lightgray;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -377,8 +377,8 @@ details .cont {
     border: rgba(0,0,0,0.2) solid 1px;
 }
 
-.user-action-open {
-    top: 1rem;
+.action-more-open {
+    top: 1.2rem;
 }
 
 .list summary {

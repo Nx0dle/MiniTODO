@@ -7,9 +7,9 @@
       <div class="action">
         <div class="add_outer"><%= link_to 'add', new_group_path, data: { turbo_frame: "newGroup" }, class: 'material-symbols-outlined hover bigger-icon' %></div>
         <div class="remove_outer"><%= link_to 'remove', '#', data: { turbo_frame: "newGroup" }, class: 'material-symbols-outlined hover bigger-icon' %></div>
-        <div class="user-action hover">
+        <div class="action-more hover">
           <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined bigger-icon'%>
-          <div class="user-action-open">
+          <div class="action-more-open">
             <%= link_to 'person', '#', data: { turbo: false }, class: 'material-symbols-outlined bigger-icon scale-up'%>
             <%= link_to 'logout', destroy_user_session_path, data: { turbo_method: :delete }, class: 'material-symbols-outlined bigger-icon scale-up'%>
           </div>

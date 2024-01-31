@@ -4,25 +4,27 @@ import "controllers"
 import "jquery"
 
 function mainAction() {
-    let user_action = document.querySelector('.user-action')
-    let user_action_open = document.querySelector('.user-action-open')
+    let action = document.querySelectorAll('.action-more')
+    let action_open = document.querySelectorAll('.action-more-open')
 
-        $(user_action).click(() => {
-            user_action.style.backgroundColor = 'lightgrey'
-            user_action_open.style.display = 'flex'
-            user_action.classList.remove('hover')
-        })
+        action.forEach((e, index) => {
+            $(e).click(() => {
+                e.style.backgroundColor = 'lightgrey'
+                action_open[index].style.display = 'flex'
+                e.classList.remove('hover')
+            })
 
-        $(user_action_open).mouseover(() => {
-            user_action.style.backgroundColor = 'lightgrey'
-            user_action_open.style.display = 'flex'
-            user_action.classList.remove('hover')
-        })
+            $(action_open[index]).mouseover(() => {
+                e.style.backgroundColor = 'lightgrey'
+                action_open[index].style.display = 'flex'
+                e.classList.remove('hover')
+            })
 
-        $(user_action_open).mouseout(() => {
-            user_action.style.backgroundColor = 'transparent'
-            user_action_open.style.display = 'none'
-            user_action.classList.add('hover')
+            $(e).mouseout(() => {
+                e.style.backgroundColor = 'transparent'
+                action_open[index].style.display = 'none'
+                e.classList.add('hover')
+            })
         })
 }
 
@@ -202,5 +204,8 @@ $(document).on('turbo:load', function(){
 
     $(right_panel).on('turbo:frame-render', () => {
         gridAction()
+        mainAction()
+        addRemoveAction()
+        optionsAction()
     })
 })
