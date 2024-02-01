@@ -132,7 +132,12 @@ function gridAction() {
 
     $(collapse_right_panel).click(() => {
         right_panel.style.display = 'none'
-        grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+        if (middle_panel.style.display == 'flex') {
+            grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+        }
+        else {
+            grid_system.style.gridTemplate = '1fr / 1fr'
+        }
     })
 
     $(collapse_middle_panel).click(() => {

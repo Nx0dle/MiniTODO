@@ -127,7 +127,8 @@ a {
     gap: .4rem;
 }
 
-#right-panel > .nav > .text {
+#right-panel > .nav > .text,
+#middle-panel > .nav > .text{
     display: flex;
     align-items: center;
     gap: 1rem;
