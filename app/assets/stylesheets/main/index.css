@@ -61,6 +61,10 @@ a {
     background-color: #eaeaea !important;
 }
 
+body {
+    background-color: black;
+}
+
 #main {
     display: grid;
     grid-template: 1fr / 1fr;
@@ -68,8 +72,7 @@ a {
 
     padding: .3rem;
     height: 100vh;
-
-    background-color: black;
+    background-color: transparent;
     user-select: none;
 }
 
@@ -427,4 +430,30 @@ details .cont {
 #list_tg:hover,
 #task_tg:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+    #main {
+        display: grid;
+        grid-template: 1fr / 1fr;
+        column-gap: .3rem;
+        row-gap: .3rem;
+
+        padding: .3rem;
+        height: 100vh;
+        background-color: transparent;
+        user-select: none;
+    }
+
+    #left-panel,
+    #middle-panel,
+    #right-panel {
+        background-color: white;
+
+        flex-direction: column;
+        gap: 0.5rem;
+
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+    }
 }

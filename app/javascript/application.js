@@ -115,9 +115,17 @@ function gridAction() {
     let collapse_right_panel = document.querySelector('.collapse-r-p')
     let collapse_middle_panel = document.querySelector('.collapse-m-p')
 
+    let midView = window.matchMedia("(max-width: 1000px)")
+
     $(list_tg).click(() => {
         middle_panel.style.display = 'flex'
-        if (right_panel.style.display == 'flex') {
+        if (right_panel.style.display === 'flex' && midView.matches) {
+            grid_system.style.gridTemplate = '1fr 2fr 2fr / 1fr'
+        }
+        else if (midView.matches) {
+            grid_system.style.gridTemplate = '1fr 2fr / 1fr'
+        }
+        else if (right_panel.style.display === 'flex') {
             grid_system.style.gridTemplate = '1fr / 1fr 2fr 2fr'
         }
         else {
@@ -127,12 +135,23 @@ function gridAction() {
 
     $(task_tg).click(() => {
         right_panel.style.display = 'flex'
-        grid_system.style.gridTemplate = '1fr / 1fr 2fr 2fr'
+        if (midView.matches) {
+            grid_system.style.gridTemplate = '1fr 2fr 2fr / 1fr'
+        }
+        else {
+            grid_system.style.gridTemplate = '1fr / 1fr 2fr 2fr'
+        }
     })
 
     $(collapse_right_panel).click(() => {
         right_panel.style.display = 'none'
-        if (middle_panel.style.display == 'flex') {
+        if (middle_panel.style.display === 'flex' && midView.matches) {
+            grid_system.style.gridTemplate = '1fr 2fr / 1fr'
+        }
+        else if (midView.matches) {
+            grid_system.style.gridTemplate = '1fr / 1fr'
+        }
+        else if (middle_panel.style.display === 'flex') {
             grid_system.style.gridTemplate = '1fr / 1fr 2fr'
         }
         else {
