@@ -1,0 +1,12 @@
+<%= turbo_frame_tag list do %>
+  <div class="item opt-tg">
+    <%= link_to list.name, list_path(list), data: { turbo_frame: "middle-panel"}, id: 'list_tg' %>
+    <div class="options hover">
+      <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
+      <div class="options-open">
+        <%= link_to 'edit', edit_list_path(list), data: { turbo_frame: "editList#{list.id}"}, class: 'material-symbols-outlined smaller-icon scale-up edit'%>
+        <%= link_to 'delete', list_path(list), data: { turbo_method: :delete, turbo_frame: "_top" }, class: 'material-symbols-outlined smaller-icon scale-up delete'%>
+      </div>
+    </div>
+  </div>
+<% end %>

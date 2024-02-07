@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "editList#{@list.id}" do %>
+<%= turbo_frame_tag @list do %>
   <%= form_with(model: @list, local: true, class: 'form-container') do |f| %>
     <%= f.text_field :name, placeholder: 'Edit list...', autocomplete: "off", spellcheck: false, autofocus: true %>
     <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>

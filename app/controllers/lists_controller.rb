@@ -14,9 +14,14 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.user = current_user
-    @list.save
+    @group = @list.group
+      @list.save
     if @list
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
   def edit
@@ -24,7 +29,11 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +43,9 @@ class ListsController < ApplicationController
     end
     @list.subcategories.destroy_all
     @list.destroy
-    redirect_to app_path
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private
