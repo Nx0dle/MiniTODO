@@ -1,0 +1,30 @@
+<div class="bg-white f-col-center g-10">
+  <h2 class="hug">Sign up</h2>
+
+  <div class="f-col w-20 g-10">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-100 i-text', placeholder: "Email..." %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "current-password", class: 'w-100 i-text', placeholder: "Password #{
+          if @minimum_password_length
+            "(#{@minimum_password_length} characters minimum)"
+          end }" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-100 i-text', placeholder: "Confirm password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
