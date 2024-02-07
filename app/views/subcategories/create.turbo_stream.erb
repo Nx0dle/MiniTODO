@@ -1,0 +1,3 @@
+<%= turbo_stream.append "subcategories", @subcategory %>
+<%= turbo_stream.update "newSub#{@list.id}", "" %>
+<%= turbo_stream.action_assign %>

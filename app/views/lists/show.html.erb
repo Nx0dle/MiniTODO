@@ -21,37 +21,9 @@
       </div>
     </div>
     <div class="lists">
-      <% @list.subcategories.each do |sub| %>
-        <div class="list">
-          <div class="opt-tg">
-            <details>
-              <summary>
-                <%= sub.name %>
-                <div class="action">
-                  <div class="add"><%= link_to 'add', new_task_path, data: { turbo_frame: "newTask#{sub.id}" }, class: 'material-symbols-outlined hover smaller-icon' %></div>
-                  <div class="remove"><%= link_to 'remove', list_path, data: { turbo_frame: "newTask#{sub.id}" }, class: 'material-symbols-outlined hover smaller-icon' %></div>
-                  <div class="options hover">
-                    <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
-                    <div class="options-open">
-                      <%= link_to 'edit', edit_subcategory_path(sub), data: { turbo_frame: "editSub#{sub.id}"}, class: 'material-symbols-outlined smaller-icon scale-up edit'%>
-                      <%= link_to 'delete', subcategory_path(sub), data: { turbo_method: :delete, turbo_frame: "_top" }, class: 'material-symbols-outlined smaller-icon scale-up delete'%>
-                    </div>
-                  </div>
-                </div>
-              </summary>
-              <div id="items">
-                <%= turbo_frame_tag "tasks" do %>
-                  <% sub.tasks.each do |task| %>
-                    <%= render partial: task, locals: { task: task } %>
-                  <% end %>
-                <% end %>
-                <%= turbo_frame_tag "newTask#{sub.id}" do %>
-                <% end %>
-              </div>
-            </details>
-          </div>
-        </div>
-        <%= turbo_frame_tag "editSub#{sub.id}" do %>
+      <%= turbo_frame_tag "subcategories" do %>
+        <% @list.subcategories.each do |subcategory| %>
+          <%= render partial: subcategory, locals: { subcategory: subcategory } %>
         <% end %>
       <% end %>
     </div>

@@ -1,0 +1,31 @@
+<%= turbo_frame_tag subcategory do %>
+  <div class="list">
+    <div class="opt-tg">
+      <details>
+        <summary>
+          <%= subcategory.name %>
+          <div class="action">
+            <div class="add"><%= link_to 'add', new_task_path, data: { turbo_frame: "newTask#{subcategory.id}" }, class: 'material-symbols-outlined hover smaller-icon' %></div>
+            <div class="remove"><%= link_to 'remove', list_path(subcategory.list), data: { turbo_frame: "newTask#{subcategory.id}" }, class: 'material-symbols-outlined hover smaller-icon' %></div>
+            <div class="options hover">
+              <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
+              <div class="options-open">
+                <%= link_to 'edit', edit_subcategory_path(subcategory), data: { turbo_frame: "editSub#{subcategory.id}"}, class: 'material-symbols-outlined smaller-icon scale-up edit'%>
+                <%= link_to 'delete', subcategory_path(subcategory), data: { turbo_method: :delete, turbo_frame: "_top" }, class: 'material-symbols-outlined smaller-icon scale-up delete'%>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div id="items">
+          <%= turbo_frame_tag "tasks" do %>
+            <% subcategory.tasks.each do |task| %>
+              <%= render partial: task, locals: { task: task } %>
+            <% end %>
+          <% end %>
+          <%= turbo_frame_tag "newTask#{subcategory.id}" do %>
+          <% end %>
+        </div>
+      </details>
+    </div>
+  </div>
+<% end %>

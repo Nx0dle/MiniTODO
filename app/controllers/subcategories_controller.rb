@@ -10,9 +10,14 @@ class SubcategoriesController < ApplicationController
   def create
     @subcategory = Subcategory.new(sub_params)
     @subcategory.user = current_user
+    @list = @subcategory.list
     @subcategory.save
     if @subcategory
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
   def edit
@@ -20,14 +25,20 @@ class SubcategoriesController < ApplicationController
 
   def update
     if @subcategory.update(sub_params)
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
   def destroy
     @subcategory.tasks.destroy_all
     @subcategory.destroy
-    redirect_to app_path
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private
