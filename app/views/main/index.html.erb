@@ -18,7 +18,11 @@
     </div>
     <div class="content">
       <div class="lists">
-        <%= render 'group-list' %>
+        <%= turbo_frame_tag "groups" do %>
+          <% @groups.each do |group| %>
+            <%= render partial: 'groups/group', locals: { group: group } %>
+          <% end %>
+        <% end %>
       </div>
       <%= turbo_frame_tag 'newGroup' do %>
       <% end %>

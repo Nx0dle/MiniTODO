@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "editGroup#{@group.id}" do %>
+<%= turbo_frame_tag @group do %>
   <%= form_with(model: @group, local: true, class: 'form-container') do |f| %>
     <%= f.text_field :name, placeholder: 'New group...', autocomplete: "off", spellcheck: false, autofocus: true %>
     <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>

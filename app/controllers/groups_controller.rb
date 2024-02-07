@@ -11,7 +11,11 @@ class GroupsController < ApplicationController
     @group.user = current_user
     @group.save
     if @group.save
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
   def edit
@@ -19,7 +23,11 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +41,9 @@ class GroupsController < ApplicationController
     end
     @group.lists.destroy_all
     @group.destroy
-    redirect_to app_path
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private
