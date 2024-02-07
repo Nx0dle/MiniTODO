@@ -65,14 +65,15 @@
 .btn-primary {
     width: 50%;
     padding: clamp(5px, 1vw, 10px);
-    border: lightgray solid 1px;
+    border: #646464 solid 1px;
     border-radius: .2rem;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    background-color: white;
 }
 
 .btn-primary:hover {
-    border: #777777 solid 1px;
+    border: #000000 solid 1px;
     border-radius: .4rem;
 }
 

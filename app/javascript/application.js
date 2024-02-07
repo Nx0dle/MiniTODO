@@ -3,6 +3,55 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
 
+Turbo.StreamActions.action_assign = function() {
+    optionsAction()
+    addRemoveAction()
+    taskAction()
+    mainAction()
+    gridAction()
+}
+
+function taskAction() {
+    $('input[type=checkbox]').change(function() {
+        $.ajax({
+            url: '/main/' + $(this).attr('id').split('_')[1] + '/toggle',
+            type: 'POST',
+            dataType: 'json',
+            success: function(response) {
+                console.log("success")
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 422) {
+                    alert("Validation failed: " + jqXHR.responseText);
+                }
+            }
+        })
+    })
+    let task_completed = document.querySelectorAll('#middle-panel details .item input')
+
+    task_completed.forEach((e) => {
+        e.addEventListener('change', () => {
+            if (e.checked) {
+                e.parentElement.classList.add('done')
+            }
+
+            if (!e.checked) {
+                e.parentElement.classList.remove('done')
+                e.parentElement.classList.remove('const-done')
+            }
+
+        })
+        if (e.checked) {
+            e.parentElement.classList.add('const-done')
+        }
+
+        if (!e.checked) {
+            e.parentElement.classList.remove('done')
+            e.parentElement.classList.remove('const-done')
+        }
+    })
+}
+
 function mainAction() {
     let action = document.querySelectorAll('.action-more')
     let action_open = document.querySelectorAll('.action-more-open')
@@ -185,45 +234,7 @@ $(document).on('turbo:load', function(){
         optionsAction()
         addRemoveAction()
         gridAction()
-
-        $('input[type=checkbox]').change(function() {
-            $.ajax({
-                url: '/main/' + $(this).attr('id').split('_')[1] + '/toggle',
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    console.log("success")
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    if (jqXHR.status == 422) {
-                        alert("Validation failed: " + jqXHR.responseText);
-                    }
-                }
-            })
-        })
-        let task_completed = document.querySelectorAll('#middle-panel details .item input')
-
-        task_completed.forEach((e) => {
-            e.addEventListener('change', () => {
-                if (e.checked) {
-                    e.parentElement.classList.add('done')
-                }
-
-                if (!e.checked) {
-                    e.parentElement.classList.remove('done')
-                    e.parentElement.classList.remove('const-done')
-                }
-
-            })
-            if (e.checked) {
-                e.parentElement.classList.add('const-done')
-            }
-
-            if (!e.checked) {
-                e.parentElement.classList.remove('done')
-                e.parentElement.classList.remove('const-done')
-            }
-        })
+        taskAction()
     })
 
     $(right_panel).on('turbo:frame-render', () => {

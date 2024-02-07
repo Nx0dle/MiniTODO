@@ -13,9 +13,14 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
+    @subcategory = @task.subcategory
     @task.save
     if @task.save
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +30,11 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to app_path
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +49,9 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to app_path
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private
