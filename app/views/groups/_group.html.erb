@@ -15,7 +15,7 @@
           </div>
         </div>
       </summary>
-      <%= turbo_frame_tag "lists" do %>
+      <%= turbo_frame_tag "lists#{group.id}" do %>
         <% group.lists.each do |list| %>
           <%= render partial: list, locals: { list: list } %>
         <% end %>

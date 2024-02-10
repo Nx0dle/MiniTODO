@@ -1,0 +1,2 @@
+<%= turbo_stream.replace("desc#{@task.id}", partial: 'task_desc', locals: { task: @task }) %>
+<%= turbo_stream.action_assign %>

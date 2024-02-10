@@ -9,7 +9,7 @@
     <div class="action-more hover">
       <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined bigger-icon'%>
       <div class="action-more-open">
-        <%= link_to 'edit', edit_desc_task_path, data: { turbo_frame: "editDesc#{@task.id}" }, class: 'material-symbols-outlined bigger-icon scale-up'%>
+        <%= link_to 'edit', edit_desc_task_path, data: { turbo_frame: "desc#{@task.id}" }, class: 'material-symbols-outlined bigger-icon scale-up'%>
         <%= link_to 'delete', task_path(@task), data: { turbo_method: :delete, turbo_frame: "_top" }, class: 'material-symbols-outlined bigger-icon scale-up delete'%>
       </div>
     </div>
@@ -18,11 +18,9 @@
     <div class="title">
       <h4><%= @task.name %></h4>
     </div>
-    <div class="desc">
-      <p><%= @task.description %></p>
-      <%= turbo_frame_tag "editDesc#{@task.id}" do %>
-      <% end %>
-    </div>
+    <%= turbo_frame_tag "desc#{@task.id}" do %>
+      <%= render partial: 'task_desc', locals: { task: @task } %>
+    <% end %>
     <div class="tags">
       <div class="tag">
         <%= @task.subcategory.name %>

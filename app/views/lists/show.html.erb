@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="lists">
-      <%= turbo_frame_tag "subcategories" do %>
+      <%= turbo_frame_tag "subcategories#{@list.id}" do %>
         <% @list.subcategories.each do |subcategory| %>
           <%= render partial: subcategory, locals: { subcategory: subcategory } %>
         <% end %>

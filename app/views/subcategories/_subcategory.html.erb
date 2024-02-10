@@ -17,7 +17,7 @@
           </div>
         </summary>
         <div id="items">
-          <%= turbo_frame_tag "tasks" do %>
+          <%= turbo_frame_tag "tasks#{subcategory.id}" do %>
             <% subcategory.tasks.each do |task| %>
               <%= render partial: task, locals: { task: task } %>
             <% end %>

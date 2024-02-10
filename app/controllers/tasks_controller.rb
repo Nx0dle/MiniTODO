@@ -42,8 +42,12 @@ class TasksController < ApplicationController
   end
 
   def update_desc
-    if @task.update(task_params)
-      redirect_to app_path
+    if @task.update(task_description_params)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
@@ -61,7 +65,11 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :subcategory_id)
+    params.require(:task).permit(:name, :subcategory_id)
+  end
+
+  def task_description_params
+    params.require(:task).permit(:description)
   end
 
 end
