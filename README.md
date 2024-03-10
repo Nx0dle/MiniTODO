@@ -1,24 +1,13 @@
-# README
+# MiniTODO - Ultra minimalistic TODO/checklist for everyday tasks and plans
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Minimalistic looks ↓
 
-Things you may want to cover:
+<img src="Images/MiniTODOWelcome.png">
 
-* Ruby version
+<img src="Images/MiniTODOLogin.png">
 
-* System dependencies
+<img src="Images/MiniTODODashboard.png">
 
-* Configuration
+UI is user friendly and will be changed in near future for better looks.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###### This was created by Przemek Paciorek.
