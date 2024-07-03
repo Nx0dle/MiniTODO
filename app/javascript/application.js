@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
+import {add} from "@hotwired/stimulus";
 
 Turbo.StreamActions.action_assign = function() {
     optionsAction()
@@ -9,6 +10,13 @@ Turbo.StreamActions.action_assign = function() {
     taskAction()
     mainAction()
     gridAction()
+}
+
+let removeSignTMP
+let addSignTMP
+Turbo.StreamActions.reload_signs = function() {
+    removeSignTMP.style.display = 'none'
+    addSignTMP.style.display = 'flex'
 }
 
 function taskAction() {
@@ -120,12 +128,14 @@ function addRemoveAction() {
     let dropdown = document.querySelectorAll('details')
 
     add_sign.forEach((e, index) => {
-        e.addEventListener('click', () => {
+        e.addEventListener('click', (event) => {
             e.style.display = 'none'
             remove_sign[index].style.display = 'flex'
             add_sign[index].classList.remove('const-hover')
             remove_sign[index].classList.add('const-hover')
             dropdown[index].open = true
+            removeSignTMP = remove_sign[index]
+            addSignTMP = event.target.parentElement
         })
     })
 
@@ -138,11 +148,13 @@ function addRemoveAction() {
     })
 
     add_outer_sign.forEach((e, index) => {
-        e.addEventListener('click', () => {
+        e.addEventListener('click', (event) => {
             e.style.display = 'none'
             remove_outer_sign[index].style.display = 'flex'
             add_outer_sign[index].classList.remove('const-hover')
             remove_outer_sign[index].classList.add('const-hover')
+            removeSignTMP = remove_outer_sign[index]
+            addSignTMP = event.target.parentElement
         })
     })
 

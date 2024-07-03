@@ -1,3 +1,4 @@
 <%= turbo_stream.append "lists#{@group.id}", @list %>
 <%= turbo_stream.update "newList#{@group.id}", "" %>
 <%= turbo_stream.action_assign %>
+<%= turbo_stream.reload_signs %>
