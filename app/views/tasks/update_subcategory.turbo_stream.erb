@@ -1,0 +1,19 @@
+<%= turbo_stream.replace "tasks#{@subcategory.id}" do %>
+	<%= turbo_frame_tag "tasks#{@subcategory.id}" do %>
+		<% @subcategory.tasks.active.each do |task| %>
+			<%= render partial: task, locals: { task: task } %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= turbo_stream.replace "archivedTasks#{@subcategory.id}" do %>
+	<%= turbo_frame_tag "archivedTasks#{@subcategory.id}" do %>
+		<% if @subcategory.tasks.archived.any? %>
+			<p>Archived Tasks</p>
+			<% @subcategory.tasks.archived.each do |task| %>
+				<%= render partial: task, locals: { task: task } %>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>
+<%= turbo_stream.action_assign %>

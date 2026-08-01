@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task_id, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc]
+  before_action :set_task_id, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc, :update_subcategory]
 
   def show
   end
@@ -38,6 +38,28 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_subcategory
+    if not @task.archived
+      if @task.update(archived: true)
+        @subcategory = @task.subcategory
+        respond_to do |format|
+          format.turbo_stream
+        end
+      else
+        redirect_to app_path, status: :unprocessable_entity
+      end
+    else
+      if @task.update(archived: false)
+        @subcategory = @task.subcategory
+        respond_to do |format|
+          format.turbo_stream
+        end
+      else
+        redirect_to app_path, status: :unprocessable_entity
+      end
+    end
+  end
+
   def edit_desc
   end
 
@@ -52,9 +74,10 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @subcategory = @task.subcategory
     @task.destroy
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream { render :update_subcategory }
     end
   end
 
@@ -65,7 +88,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :subcategory_id)
+    params.require(:task).permit(:name, :subcategory_id, :archived)
   end
 
   def task_description_params

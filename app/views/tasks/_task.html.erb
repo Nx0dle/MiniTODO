@@ -8,6 +8,11 @@
       <%= link_to "more_horiz", '#', data: { turbo: false }, class: 'material-symbols-outlined smaller-icon'%>
       <div class="options-open">
         <%= link_to 'edit', edit_task_path(task), class: 'material-symbols-outlined smaller-icon scale-up edit'%>
+        <% if task.archived? %>
+          <%= link_to 'unarchive', unarchive_task_path(task), data: { turbo_method: :patch }, class: 'material-symbols-outlined smaller-icon scale-up unarchive' %>
+        <% else %>
+          <%= link_to 'archive', archive_task_path(task), data: { turbo_method: :patch }, class: 'material-symbols-outlined smaller-icon scale-up archive' %>
+        <% end %>
         <%= link_to 'delete', task_path(task), data: { turbo_method: :delete }, class: 'material-symbols-outlined smaller-icon scale-up delete'%>
       </div>
     </div>

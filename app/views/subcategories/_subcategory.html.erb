@@ -18,11 +18,19 @@
         </summary>
         <div id="items">
           <%= turbo_frame_tag "tasks#{subcategory.id}" do %>
-            <% subcategory.tasks.each do |task| %>
+            <% subcategory.tasks.active.each do |task| %>
               <%= render partial: task, locals: { task: task } %>
             <% end %>
           <% end %>
           <%= turbo_frame_tag "newTask#{subcategory.id}" do %>
+          <% end %>
+          <%= turbo_frame_tag "archivedTasks#{subcategory.id}" do %>
+            <% if subcategory.tasks.archived.any? %>
+              <p>Archived Tasks</p>
+              <% subcategory.tasks.archived.each do |task| %>
+                <%= render partial: task, locals: { task: task } %>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
       </details>

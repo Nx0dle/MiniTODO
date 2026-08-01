@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_28_135323) do
+ActiveRecord::Schema[7.1].define(version: 2026_08_01_124205) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_28_135323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.boolean "archived", default: false
     t.index ["subcategory_id"], name: "index_tasks_on_subcategory_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end

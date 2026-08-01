@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :tasks do
     get 'edit_desc', to: 'tasks#edit_desc', on: :member
     post 'edit_desc', to: 'tasks#update_desc', on: :member
+    patch 'archive', to: 'tasks#update_subcategory', on: :member
+    patch 'unarchive', to: 'tasks#update_subcategory', on: :member
   end
   resources :groups
   resources :lists
