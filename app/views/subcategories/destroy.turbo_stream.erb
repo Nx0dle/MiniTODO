@@ -1,1 +1,5 @@
+<% if @has_opened_task %>
+    <%= turbo_stream.close_task_panel %>
+<% end %>
+
 <%= turbo_stream.remove @subcategory %>

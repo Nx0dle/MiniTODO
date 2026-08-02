@@ -2,4 +2,8 @@
   <%= turbo_stream.close_list_panel %>
 <% end %>
 
+<% if @has_opened_task %>
+    <%= turbo_stream.close_task_panel %>
+<% end %>
+
 <%= turbo_stream.remove @list %>

@@ -32,6 +32,14 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @has_opened_list = @group.lists.exists?(id: current_user.current_opened_list)
+    task_id = current_user.current_opened_task
+    @has_opened_task = if task_id.present?
+      @group.lists.joins(subcategories: :tasks).exists?(tasks: { id: task_id })
+    else
+      false
+    end
+
     @group.lists.each do |list|
       subcategories = list.subcategories
       subcategories.each do |sub|
@@ -39,8 +47,18 @@ class GroupsController < ApplicationController
       end
       list.subcategories.destroy_all
     end
+
     @group.lists.destroy_all
     @group.destroy
+
+    if @has_opened_list
+      current_user.update(current_opened_list: nil)
+    end
+
+    if @has_opened_task
+      current_user.update(current_opened_task: nil)
+    end
+
     respond_to do |format|
       format.turbo_stream
     end

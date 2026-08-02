@@ -40,6 +40,12 @@ class ListsController < ApplicationController
 
   def destroy
     @was_current_list = (current_user.current_opened_list == @list.id)
+    task_id = current_user.current_opened_task
+    @has_opened_task = if task_id.present?
+      @list.subcategories.joins(:tasks).exists?(tasks: { id: task_id })
+    else
+      false
+    end
 
     @list.subcategories.each do |sub|
       sub.tasks.destroy_all
@@ -50,6 +56,10 @@ class ListsController < ApplicationController
 
     if @was_current_list
       current_user.update(current_opened_list: nil)
+    end
+
+    if @has_opened_task
+      current_user.update(current_opened_task: nil)
     end
 
     respond_to do |format|

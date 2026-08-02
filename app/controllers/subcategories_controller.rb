@@ -34,8 +34,15 @@ class SubcategoriesController < ApplicationController
   end
 
   def destroy
+    @has_opened_task = @subcategory.tasks.exists?(id: current_user.current_opened_task)
+
     @subcategory.tasks.destroy_all
     @subcategory.destroy
+
+    if @has_opened_task
+      current_user.update(current_opened_task: nil)
+    end
+
     respond_to do |format|
       format.turbo_stream
     end
