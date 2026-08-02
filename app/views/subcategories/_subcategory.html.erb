@@ -26,10 +26,12 @@
           <% end %>
           <%= turbo_frame_tag "archivedTasks#{subcategory.id}" do %>
             <% if subcategory.tasks.archived.any? %>
-              <p>Archived Tasks</p>
-              <% subcategory.tasks.archived.each do |task| %>
-                <%= render partial: task, locals: { task: task } %>
-              <% end %>
+              <div class="archived_container">
+                <p class="heading_archived">Archived Tasks</p>
+                <% subcategory.tasks.archived.each do |task| %>
+                  <%= render partial: task, locals: { task: task } %>
+                <% end %>
+              </div>
             <% end %>
           <% end %>
         </div>

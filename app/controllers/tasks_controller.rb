@@ -45,7 +45,7 @@ class TasksController < ApplicationController
       if @task.update(archived: true)
         @subcategory = @task.subcategory
         respond_to do |format|
-          format.turbo_stream
+          format.turbo_stream { render partial: "update_subcategory" }
         end
       else
         redirect_to app_path, status: :unprocessable_entity
@@ -54,7 +54,7 @@ class TasksController < ApplicationController
       if @task.update(archived: false)
         @subcategory = @task.subcategory
         respond_to do |format|
-          format.turbo_stream
+          format.turbo_stream { render partial: "update_subcategory" }
         end
       else
         redirect_to app_path, status: :unprocessable_entity

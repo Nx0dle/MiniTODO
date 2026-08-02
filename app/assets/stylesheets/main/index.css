@@ -267,7 +267,7 @@ summary::-webkit-details-marker {
 details {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.25em;
     cursor: pointer;
     width: 100%;
 }
@@ -430,6 +430,23 @@ details .cont {
 #list_tg:hover,
 #task_tg:hover {
     text-decoration: underline;
+}
+
+#task_tg,
+#list_tg {
+    color: black;
+}
+
+.heading_archived {
+    margin-top: 2vh;
+}
+
+.archived_container #task_tg {
+    color: gray;
+}
+
+.opt-tg details {
+    margin: 1vh 0 1vh 0;
 }
 
 @media (max-width: 1000px) {
