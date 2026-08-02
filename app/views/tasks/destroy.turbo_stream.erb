@@ -1,0 +1,5 @@
+<%= render "update_subcategory" %>
+
+<% if @was_current_task %>
+    <%= turbo_stream.close_task_panel %>
+<% end %>

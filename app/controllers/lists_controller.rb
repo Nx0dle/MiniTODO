@@ -4,6 +4,7 @@ class ListsController < ApplicationController
   before_action :set_list_id, only: [:edit, :update, :destroy, :show]
 
   def show
+    current_user.update(current_opened_list: @list.id)
   end
 
   def new
@@ -38,11 +39,19 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    @was_current_list = (current_user.current_opened_list == @list.id)
+
     @list.subcategories.each do |sub|
       sub.tasks.destroy_all
     end
+
     @list.subcategories.destroy_all
     @list.destroy
+
+    if @was_current_list
+      current_user.update(current_opened_list: nil)
+    end
+
     respond_to do |format|
       format.turbo_stream
     end

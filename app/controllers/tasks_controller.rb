@@ -4,7 +4,9 @@ class TasksController < ApplicationController
   before_action :set_task_id, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc, :update_subcategory]
 
   def show
+    current_user.update(current_opened_task: @task.id)
   end
+  
   def new
     @task = Task.new
     @subcategories = Subcategory.all
@@ -74,10 +76,17 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @was_current_task = (current_user.current_opened_task == @task.id)
     @subcategory = @task.subcategory
+
     @task.destroy
+
+    if @was_current_task
+      current_user.update(current_opened_task: nil)
+    end
+
     respond_to do |format|
-      format.turbo_stream { render :update_subcategory }
+      format.turbo_stream
     end
   end
 

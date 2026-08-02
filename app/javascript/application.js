@@ -12,6 +12,14 @@ Turbo.StreamActions.action_assign = function() {
     gridAction()
 }
 
+Turbo.StreamActions.close_task_panel = function() {
+    closeTaskAction()
+}
+
+Turbo.StreamActions.close_list_panel = function() {
+    closeListAction()
+}
+
 let removeSignTMP
 let addSignTMP
 Turbo.StreamActions.reload_signs = function() {
@@ -35,7 +43,7 @@ function taskAction() {
             }
         })
     })
-    let task_completed = document.querySelectorAll('#middle-panel details .item input')
+    const task_completed = document.querySelectorAll('#middle-panel details .item input')
 
     task_completed.forEach((e) => {
         e.addEventListener('change', () => {
@@ -61,8 +69,8 @@ function taskAction() {
 }
 
 function mainAction() {
-    let action = document.querySelectorAll('.action-more')
-    let action_open = document.querySelectorAll('.action-more-open')
+    const action = document.querySelectorAll('.action-more')
+    const action_open = document.querySelectorAll('.action-more-open')
 
         action.forEach((e, index) => {
             $(e).click(() => {
@@ -86,9 +94,9 @@ function mainAction() {
 }
 
 function optionsAction() {
-    let container = document.querySelectorAll('.opt-tg')
-    let task_options = document.querySelectorAll('.options')
-    let task_options_open = document.querySelectorAll('.options-open')
+    const container = document.querySelectorAll('.opt-tg')
+    const task_options = document.querySelectorAll('.options')
+    const task_options_open = document.querySelectorAll('.options-open')
 
     container.forEach((e, index) => {
         e.addEventListener('mouseover', () => {
@@ -121,11 +129,11 @@ function optionsAction() {
 }
 
 function addRemoveAction() {
-    let add_sign = document.querySelectorAll('.add')
-    let remove_sign = document.querySelectorAll('.remove')
-    let add_outer_sign = document.querySelectorAll('.add_outer')
-    let remove_outer_sign = document.querySelectorAll('.remove_outer')
-    let dropdown = document.querySelectorAll('details')
+    const add_sign = document.querySelectorAll('.add')
+    const remove_sign = document.querySelectorAll('.remove')
+    const add_outer_sign = document.querySelectorAll('.add_outer')
+    const remove_outer_sign = document.querySelectorAll('.remove_outer')
+    const dropdown = document.querySelectorAll('details')
 
     add_sign.forEach((e, index) => {
         e.addEventListener('click', (event) => {
@@ -168,15 +176,15 @@ function addRemoveAction() {
 }
 
 function gridAction() {
-    let middle_panel  = document.querySelector('#middle-panel')
-    let right_panel = document.querySelector('#right-panel')
-    let grid_system = document.querySelector('#main')
-    let list_tg = document.querySelectorAll('#list_tg')
-    let task_tg = document.querySelectorAll('#task_tg')
-    let collapse_right_panel = document.querySelector('.collapse-r-p')
-    let collapse_middle_panel = document.querySelector('.collapse-m-p')
+    const middle_panel  = document.querySelector('#middle-panel')
+    const right_panel = document.querySelector('#right-panel')
+    const grid_system = document.querySelector('#main')
+    const list_tg = document.querySelectorAll('#list_tg')
+    const task_tg = document.querySelectorAll('#task_tg')
+    const collapse_right_panel = document.querySelector('.collapse-r-p')
+    const collapse_middle_panel = document.querySelector('.collapse-m-p')
 
-    let midView = window.matchMedia("(max-width: 1000px)")
+    const midView = window.matchMedia("(max-width: 1000px)")
 
     $(list_tg).click(() => {
         middle_panel.style.display = 'flex'
@@ -231,10 +239,45 @@ function gridAction() {
     })
 }
 
+function closeTaskAction() {
+    const middle_panel  = document.querySelector('#middle-panel')
+    const right_panel = document.querySelector('#right-panel')
+    const grid_system = document.querySelector('#main')
+    const midView = window.matchMedia("(max-width: 1000px)")
+
+    right_panel.style.display = 'none'
+    if (middle_panel.style.display === 'flex' && midView.matches) {
+        grid_system.style.gridTemplate = '1fr 2fr / 1fr'
+    }
+    else if (midView.matches) {
+        grid_system.style.gridTemplate = '1fr / 1fr'
+    }
+    else if (middle_panel.style.display === 'flex') {
+        grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+    }
+    else {
+        grid_system.style.gridTemplate = '1fr / 1fr'
+    }
+}
+
+function closeListAction() {
+    const middle_panel  = document.querySelector('#middle-panel')
+    const right_panel = document.querySelector('#right-panel')
+    const grid_system = document.querySelector('#main')
+
+    middle_panel.style.display = 'none'
+    if (right_panel.style.display == 'flex') {
+        grid_system.style.gridTemplate = '1fr / 1fr 2fr'
+    }
+    else {
+        grid_system.style.gridTemplate = '1fr / 1fr'
+    }
+}
+
 $(document).on('turbo:load', function(){
 
-    let middle_panel  = document.querySelector('#middle-panel')
-    let right_panel = document.querySelector('#right-panel')
+    const middle_panel  = document.querySelector('#middle-panel')
+    const right_panel = document.querySelector('#right-panel')
 
     optionsAction()
     addRemoveAction()

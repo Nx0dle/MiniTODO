@@ -1,1 +1,5 @@
+<% if @was_current_list %>
+  <%= turbo_stream.close_list_panel %>
+<% end %>
+
 <%= turbo_stream.remove @list %>
