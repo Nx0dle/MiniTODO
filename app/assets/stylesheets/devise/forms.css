@@ -51,6 +51,10 @@
     width: 20%;
 }
 
+.mt-0 {
+    margin-top: 0;
+}
+
 .i-text {
     padding: clamp(8px, 1vw, 10px);
     border-radius: .2rem;
@@ -84,4 +88,15 @@ a {
 
 em {
     font-size: .7rem;
+}
+
+.heading {
+    font-size: .8rem;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.list {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
