@@ -30,13 +30,13 @@ Turbo.StreamActions.reload_signs = function() {
 function taskAction() {
     $('input[type=checkbox]').change(function() {
         $.ajax({
-            url: '/main/' + $(this).attr('id').split('_')[1] + '/toggle',
+            url: '/tasks/' + $(this).attr('id').split('_')[1] + '/toggle',
             type: 'POST',
             dataType: 'json',
-            success: function(response) {
-                console.log("success")
+            headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR) {
                 if (jqXHR.status == 422) {
                     alert("Validation failed: " + jqXHR.responseText);
                 }

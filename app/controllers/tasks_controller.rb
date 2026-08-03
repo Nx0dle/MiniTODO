@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task_id, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc, :update_subcategory]
+  before_action :set_task_id, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc, :update_subcategory, :toggle]
 
   def show
     current_user.update(current_opened_task: @task.id)
@@ -88,6 +88,12 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.turbo_stream
     end
+  end
+
+  def toggle
+    @task.update(done: !@task.done)
+    @task.save
+    head :ok
   end
 
   private
