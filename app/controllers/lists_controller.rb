@@ -16,8 +16,8 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user = current_user
     @group = @list.group
-      @list.save
-    if @list
+
+    if @list.save
       respond_to do |format|
         format.turbo_stream
       end
@@ -25,6 +25,7 @@ class ListsController < ApplicationController
       redirect_to app_path, status: :unprocessable_entity
     end
   end
+  
   def edit
   end
 

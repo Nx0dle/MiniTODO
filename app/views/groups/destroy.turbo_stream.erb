@@ -6,4 +6,8 @@
     <%= turbo_stream.close_task_panel %>
 <% end %>
 
+<% if (@groups_count - 1) == 0 %>
+  <%= turbo_stream.update "newGroup", "<p>Create something here..."%>
+<% end %>
+
 <%= turbo_stream.remove @group %>

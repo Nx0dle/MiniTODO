@@ -2,6 +2,8 @@
 
 class GroupsController < ApplicationController
   before_action :set_group_id, only: [:edit, :update, :destroy]
+  before_action :count_groups, only: [:create, :destroy]
+
   def new
     @group = Group.new
   end
@@ -9,7 +11,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.user = current_user
-    @group.save
+
     if @group.save
       respond_to do |format|
         format.turbo_stream
@@ -18,6 +20,7 @@ class GroupsController < ApplicationController
       redirect_to app_path, status: :unprocessable_entity
     end
   end
+
   def edit
   end
 
@@ -68,6 +71,10 @@ class GroupsController < ApplicationController
 
   def set_group_id
     @group = Group.find(params[:id])
+  end
+
+  def count_groups
+    @groups_count = current_user.groups.count
   end
 
   def group_params
