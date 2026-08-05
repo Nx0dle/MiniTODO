@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  before_action :set_group_id, only: [:edit, :update, :destroy]
+  before_action :set_group, only: [:edit, :update, :destroy]
   before_action :count_groups, only: [:create, :destroy]
 
   def new
@@ -69,8 +69,8 @@ class GroupsController < ApplicationController
 
   private
 
-  def set_group_id
-    @group = Group.find(params[:id])
+  def set_group
+    @group = current_user.groups.find(params[:id])
   end
 
   def count_groups

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SubcategoriesController < ApplicationController
-  before_action :set_sub_id, only: [:edit, :update, :destroy]
+  before_action :set_sub, only: [:edit, :update, :destroy]
   def new
     @subcategory = Subcategory.new
     @lists = List.all
@@ -50,8 +50,8 @@ class SubcategoriesController < ApplicationController
 
   private
 
-  def set_sub_id
-    @subcategory = Subcategory.find(params[:id])
+  def set_sub
+    @subcategory = current_user.subcategories.find(params[:id])
   end
 
   def sub_params

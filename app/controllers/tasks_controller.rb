@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task_id, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc, :update_subcategory, :toggle]
+  before_action :set_task, only: [:edit, :update, :destroy, :show, :edit_desc, :update_desc, :update_subcategory, :toggle]
 
   def show
     current_user.update(current_opened_task: @task.id)
@@ -41,24 +41,13 @@ class TasksController < ApplicationController
   end
 
   def update_subcategory
-    if not @task.archived
-      if @task.update(archived: true)
-        @subcategory = @task.subcategory
-        respond_to do |format|
-          format.turbo_stream { render partial: "update_subcategory" }
-        end
-      else
-        redirect_to app_path, status: :unprocessable_entity
+    if @task.update(archived: !@task.archived)
+      @subcategory = @task.subcategory
+      respond_to do |format|
+        format.turbo_stream { render partial: "update_subcategory" }
       end
     else
-      if @task.update(archived: false)
-        @subcategory = @task.subcategory
-        respond_to do |format|
-          format.turbo_stream { render partial: "update_subcategory" }
-        end
-      else
-        redirect_to app_path, status: :unprocessable_entity
-      end
+      redirect_to app_path, status: :unprocessable_entity
     end
   end
 
@@ -97,8 +86,8 @@ class TasksController < ApplicationController
 
   private
 
-  def set_task_id
-    @task = Task.find(params[:id])
+  def set_task
+    @task = current_user.tasks.find(params[:id])
   end
 
   def task_params

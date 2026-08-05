@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ListsController < ApplicationController
-  before_action :set_list_id, only: [:edit, :update, :destroy, :show]
+  before_action :set_list, only: [:edit, :update, :destroy, :show]
 
   def show
     current_user.update(current_opened_list: @list.id)
@@ -70,8 +70,8 @@ class ListsController < ApplicationController
 
   private
 
-  def set_list_id
-    @list = List.find(params[:id])
+  def set_list
+    @list = current_user.lists.find(params[:id])
   end
 
   def list_params
