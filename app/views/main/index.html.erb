@@ -25,7 +25,9 @@
         <% end %>
       </div>
       <%= turbo_frame_tag 'newGroup' do %>
-        <p style="margin-bottom: 0.5rem;">Create something here...</p>
+        <% if !@groups.any? %>
+          <p style="margin-bottom: 0.5rem;">Create something here...</p>
+        <% end %>
       <% end %>
     </div>
   </section>
