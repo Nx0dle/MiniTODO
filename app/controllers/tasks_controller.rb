@@ -92,7 +92,6 @@ class TasksController < ApplicationController
 
   def toggle
     @task.update(done: !@task.done)
-    @task.save
     head :ok
   end
 
