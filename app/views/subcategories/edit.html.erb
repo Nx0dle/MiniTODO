@@ -1,5 +1,5 @@
 <%= turbo_frame_tag @subcategory do %>
-  <%= form_with(model: @subcategory, local: true, class: 'form-container') do |f| %>
+  <%= form_with(model: @subcategory, class: 'form-container') do |f| %>
     <%= f.text_field :name, placeholder: 'Edit subcategory...', autocomplete: "off", spellcheck: false, autofocus: true %>
     <%= f.submit value: 'Add', data: {turbo_frame: "_top"}, hidden: true %>
   <% end %>
